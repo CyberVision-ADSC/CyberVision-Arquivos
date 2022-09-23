@@ -1,81 +1,68 @@
-create database CyberVision;
-use CyberVision;
+CREATE DATABASE cybervision;
+USE cybervision;
 
-create table faculdade
-(id_faculdade int primary key auto_increment,
-nome_fantasia varchar(40),
-razao_social varchar(40),
-cnpj char(15),
-cep char (8),
-numero int);
+CREATE TABLE faculdade(
+  id_faculdade INT PRIMARY KEY AUTO_INCREMENT,
+  nome_fantasia VARCHAR(40),
+  razao_social VARCHAR(40),
+  cnpj CHAR(15),
+  cep CHAR(8),
+  numero INT);
+  
+  CREATE TABLE usuario (
+  id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(40),
+  email VARCHAR(40),
+  senha VARCHAR(30),
+  fk_faculdade INT NOT NULL,
+  FOREIGN KEY (fk_faculdade)
+  REFERENCES faculdade (id_faculdade));
 
+CREATE TABLE andar (
+  id_andar INT PRIMARY KEY,
+  numero_andar INT,
+  fk_faculdade INT,
+  FOREIGN KEY (fk_faculdade)
+  REFERENCES faculdade (id_faculdade));
 
-create table usuario
-(id_usuario int primary key auto_increment,
-nome varchar(40),
-email varchar(40),
-senha varchar (30),
-cargo varchar(20),
-fk_faculdade int,
-foreign key (fk_faculdade) references faculdade (id_faculdade));
+CREATE TABLE sala (
+  id_sala INT PRIMARY KEY,
+  identificação VARCHAR(10),
+  fk_andar INT,
+  FOREIGN KEY (fk_andar)
+  REFERENCES andar (id_andar));
+  
+CREATE TABLE computador (
+  id_computador INT PRIMARY KEY AUTO_INCREMENT,
+  processador VARCHAR(40),
+  placa_mae VARCHAR(40) ,
+  ram INT,
+  memoria INT,
+  sistema_operacional VARCHAR(20),
+  fk_sala INT,
+  FOREIGN KEY (fk_sala)
+  REFERENCES sala (id_sala));
 
-create table andar
-(id_andar int primary key,
-numero_andar int,
-fk_faculdade int,
-foreign key (fk_faculdade) references faculdade (id_faculdade));
-
-create table sala 
-(id_sala int primary key,
-identificação varchar(10),
-fk_andar int,
-foreign key (fk_andar) references andar (id_andar));
-
-create table maquina
-(id_maquina int primary key auto_increment,
-processador varchar(40),
-placa_mae varchar(40),
-ram int,
-memoria int,
-sistema_operacional varchar (20),
-fk_sala int,
-foreign key (fk_sala) references sala (id_sala));
-
-create table desempenho
-(id_relatorio int primary key auto_increment,
-tipo varchar (15),
-CHECK (tipo = 'manual' or tipo = 'automatico'),
-fk_maquina int,
-foreign key (fk_maquina) references computador (id_maquina),
-uso_cpu int,
-uso_disco int,
-uso_ram int,
-processos varchar (500));
-
-create table tipo_alerta
-(id_tipo_alerta int primary key auto_increment,
-gravidade varchar(20),
-descricao varchar (500));
-
-create table alerta
-(id_alerta int primary key auto_increment,
-data_hora datetime,
-fk_tipo_alerta int,
-foreign key (fk_tipo_alerta) references tipo_alerta (id_tipo_alerta));
-
-create table tipo_chamado 
-(id_tipo_chamado int primary key auto_increment,
-tipo_chamado varchar (500),
-descricao varchar(500)
+CREATE TABLE relatorio (
+  id_relatorio INT PRIMARY KEY AUTO_INCREMENT,
+  tipo VARCHAR(15),
+  uso_cpu INT,
+  uso_disco INT,
+  uso_ram INT,
+  data_hora DATETIME,
+  fk_computador INT,
+  FOREIGN KEY (fk_computador)
+  REFERENCES computador (id_computador),
+  fk_sala INT,
+  FOREIGN KEY (fk_sala)
+  REFERENCES sala (id_sala));
+  
+CREATE TABLE processo (
+	id_relatorio INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(100),
+    data_hora DATETIME,
+    fk_computador INT,
+    FOREIGN KEY (fk_computador)
+    REFERENCES computador (id_computador)
 );
 
-create table chamado_manual
-(id_chamado int primary key auto_increment,
-nome_aluno varchar(500),
-data_hora datetime,
-descricao varchar(500),
-fk_tipo_chamado int,
-foreign key (fk_tipoChamado) references tipo_chamado (id_tipo_chamado),
-fk_maquina int,
-foreign key (fk_maquina) references maquina (id_maquina)
-);
