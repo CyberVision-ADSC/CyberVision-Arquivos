@@ -19,15 +19,17 @@ CREATE TABLE faculdade(
   REFERENCES faculdade (id_faculdade));
 
 CREATE TABLE andar (
-  id_andar INT PRIMARY KEY,
-  numero_andar INT,
+  id_andar INT PRIMARY KEY AUTO_INCREMENT,
+  identificador_andar VARCHAR(255),
+  descricao_andar VARCHAR(255),
   fk_faculdade INT,
   FOREIGN KEY (fk_faculdade)
   REFERENCES faculdade (id_faculdade));
 
 CREATE TABLE sala (
-  id_sala INT PRIMARY KEY,
-  identificação VARCHAR(10),
+  id_sala INT PRIMARY KEY AUTO_INCREMENT,
+  identificador_sala VARCHAR(255),
+  descricao_sala VARCHAR(10),
   fk_andar INT,
   FOREIGN KEY (fk_andar)
   REFERENCES andar (id_andar));
@@ -65,4 +67,3 @@ CREATE TABLE processo (
     FOREIGN KEY (fk_computador)
     REFERENCES computador (id_computador)
 );
-
