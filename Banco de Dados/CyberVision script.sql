@@ -7,7 +7,8 @@ CREATE TABLE faculdade(
   razao_social VARCHAR(40),
   cnpj CHAR(15),
   cep CHAR(8),
-  numero INT);
+  numero INT
+);
   
   CREATE TABLE usuario (
   id_usuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -15,8 +16,10 @@ CREATE TABLE faculdade(
   email VARCHAR(40),
   senha VARCHAR(30),
   fk_faculdade INT NOT NULL,
+  tipo_usuario VARCHAR(10),
   FOREIGN KEY (fk_faculdade)
-  REFERENCES faculdade (id_faculdade));
+  REFERENCES faculdade (id_faculdade)
+);
 
 CREATE TABLE andar (
   id_andar INT PRIMARY KEY AUTO_INCREMENT,
@@ -24,7 +27,8 @@ CREATE TABLE andar (
   descricao_andar VARCHAR(255),
   fk_faculdade INT,
   FOREIGN KEY (fk_faculdade)
-  REFERENCES faculdade (id_faculdade));
+  REFERENCES faculdade (id_faculdade)
+);
 
 CREATE TABLE sala (
   id_sala INT PRIMARY KEY AUTO_INCREMENT,
@@ -32,7 +36,8 @@ CREATE TABLE sala (
   descricao_sala VARCHAR(10),
   fk_andar INT,
   FOREIGN KEY (fk_andar)
-  REFERENCES andar (id_andar));
+  REFERENCES andar (id_andar)
+);
   
 CREATE TABLE computador (
   id_computador INT PRIMARY KEY AUTO_INCREMENT,
@@ -43,7 +48,8 @@ CREATE TABLE computador (
   sistema_operacional VARCHAR(20),
   fk_sala INT,
   FOREIGN KEY (fk_sala)
-  REFERENCES sala (id_sala));
+  REFERENCES sala (id_sala)
+);
 
 CREATE TABLE relatorio (
   id_relatorio INT PRIMARY KEY AUTO_INCREMENT,
@@ -57,7 +63,8 @@ CREATE TABLE relatorio (
   REFERENCES computador (id_computador),
   fk_sala INT,
   FOREIGN KEY (fk_sala)
-  REFERENCES sala (id_sala));
+  REFERENCES sala (id_sala)
+);
   
 CREATE TABLE processo (
 	id_relatorio INT PRIMARY KEY AUTO_INCREMENT,
