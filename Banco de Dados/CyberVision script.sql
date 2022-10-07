@@ -46,6 +46,11 @@ CREATE TABLE computador (
   ram INT,
   memoria INT,
   sistema_operacional VARCHAR(20),
+  ativo BOOLEAN,
+  problema_fisico BOOLEAN,
+  problema_memoria BOOLEAN,
+  problema_cpu BOOLEAN,
+  problema_disco BOOLEAN,
   fk_sala INT,
   FOREIGN KEY (fk_sala)
   REFERENCES sala (id_sala)
