@@ -1,0 +1,38 @@
+//ALERTAS//
+
+*HD/SSD - 90% atenção
+         
+Leia: 
+1 - https://serverfault.com/questions/10475/how-much-space-should-you-leave-free-on-a-hard-disk/10491?_gl=1*rm8by2*_ga*MTM5MzMxNDU1OC4xNjY3MzM2NDMw*_ga_S812YQPLT2*MTY2NzMzNjQyOS4xLjAuMTY2NzMzNjQzMi4wLjAuMA..#10491
+
+2 - https://superuser.com/questions/1256074/how-much-space-to-leave-free-on-hdd-or-ssd#:~:text=%E2%80%9CYou%20generally%20want%20to%20leave,considering.%E2%80%9D%20(Source.)
+
+*RAM - A ram depende do tempo em que se mantém com uma certa porcentagem de uso.
+
+Estimativa - 90% atenção
+             
+
+Leia:
+1 - https://help.gnome.org/users/gnome-system-monitor/stable/cpu-mem-normal.html.en
+
+
+
+*CPU - Toda cpu é feita para operar normalmente mesmo com 100% de uso, depende de quanto
+       tempo a cpu esteve (ou está) com este uso.
+
+10 relatórios seguidos acima de 80%
+
+Leia: 
+1 - https://www.intel.com/content/www/us/en/gaming/resources/how-to-fix-high-cpu-usage.html
+
+2 - https://help.gnome.org/users/gnome-system-monitor/stable/cpu-mem-normal.html.en
+
+3 - https://www.digitaltrends.com/computing/what-is-cpu-usage-and-how-to-fix-it/
+
+
+Talvez relevante:
+1 - https://en.wikipedia.org/wiki/Memory_paging#Implementations
+
+2 - https://www.e-recovery.com.br/blog/o-que-e-raid-e-para-que-serve/
+
+3 - https://whatsabyte.com/how-long-should-a-cpu-last/
