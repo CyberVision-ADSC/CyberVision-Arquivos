@@ -42,11 +42,11 @@ CREATE TABLE sala (
   FOREIGN KEY (fk_andar)
   REFERENCES andar (id_andar)
 );
-  
+ 
 CREATE TABLE computador (
   id_computador INT PRIMARY KEY AUTO_INCREMENT,
   identificador_computador VARCHAR(100),
-  hostname VARCHAR(100),
+  hostname VARCHAR(100) UNIQUE,
   processador VARCHAR(100),
   arquitetura INT,
   fabricante VARCHAR(100),
@@ -78,15 +78,30 @@ CREATE TABLE relatorio (
 );
 
 CREATE TABLE processo (
-	id_processo INT PRIMARY KEY AUTO_INCREMENT,
-    pid INT, 
-	nome VARCHAR(100),
+      id_processo INT PRIMARY KEY AUTO_INCREMENT,
+    pid INT,
+      nome VARCHAR(100),
     uso_cpu DOUBLE,
-	uso_memoria DOUBLE,
+      uso_memoria DOUBLE,
+    data_hora_atualizado DATETIME,
     fk_computador INT,
     FOREIGN KEY (fk_computador)
     REFERENCES computador (id_computador)
 );
+
+CREATE TABLE chamados (
+id_chamado INT PRIMARY KEY AUTO_INCREMENT,
+ra_aluno VARCHAR(50),
+hostname VARCHAR(100),
+descricao_ocorrido VARCHAR(300),
+status_chamado CHAR(10), CHECK (status_chamado = 'Pendente' or status_chamado = 'Finalizado'),
+responsavel_chamado VARCHAR(50),
+data_hora DATETIME,
+fk_computador INT,
+FOREIGN KEY (fk_computador)
+REFERENCES computador (id_computador)
+);
+
 
 insert into faculdade values(
 null, 'Sptech', 'sptech', '111111111111111', '88888888', 3388);
@@ -113,3 +128,4 @@ select * from usuario;
 select * from computador;
 select * from relatorio;
 select * from processo;
+select * from chamados;
