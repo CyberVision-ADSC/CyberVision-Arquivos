@@ -78,28 +78,32 @@ CREATE TABLE relatorio (
 );
 
 CREATE TABLE processo (
-      id_processo INT PRIMARY KEY AUTO_INCREMENT,
-    pid INT,
-      nome VARCHAR(100),
-    uso_cpu DOUBLE,
-      uso_memoria DOUBLE,
-    data_hora_atualizado DATETIME,
-    fk_computador INT,
-    FOREIGN KEY (fk_computador)
-    REFERENCES computador (id_computador)
+id_processo INT PRIMARY KEY AUTO_INCREMENT,
+pid INT,
+nome VARCHAR(100),
+uso_cpu DOUBLE,
+uso_memoria DOUBLE,
+data_hora_atualizado DATETIME,
+fk_computador INT,
+FOREIGN KEY (fk_computador)
+REFERENCES computador (id_computador)
 );
 
 CREATE TABLE chamados (
 id_chamado INT PRIMARY KEY AUTO_INCREMENT,
 ra_aluno VARCHAR(50),
 hostname VARCHAR(100),
-descricao_ocorrido VARCHAR(300),
+descricao_ocorrido VARCHAR(500),
 status_chamado CHAR(10), CHECK (status_chamado = 'Pendente' or status_chamado = 'Finalizado'),
 responsavel_chamado VARCHAR(50),
-data_hora DATETIME,
+data_hora_criacao DATETIME,
+data_hora_conclusao DATETIME,
 fk_computador INT,
 FOREIGN KEY (fk_computador)
-REFERENCES computador (id_computador)
+REFERENCES computador (id_computador),
+fk_responsavel INT,
+FOREIGN KEY (fk_responsavel)
+REFERENCES usuario (id_usuario)
 );
 
 
