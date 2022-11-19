@@ -89,6 +89,16 @@ FOREIGN KEY (fk_computador)
 REFERENCES computador (id_computador)
 );
 
+CREATE TABLE processo_matar (
+id_requisicao INT PRIMARY KEY AUTO_INCREMENT,
+pid_processo INT,
+is_executado BOOLEAN,
+data_hora_executado DATETIME,
+fk_computador INT,
+FOREIGN KEY (fk_computador)
+REFERENCES computador (id_computador)
+);
+
 CREATE TABLE chamados (
 id_chamado INT PRIMARY KEY AUTO_INCREMENT,
 ra_aluno VARCHAR(50),
@@ -124,6 +134,11 @@ insert into computador (id_computador, hostname, is_ativo, fk_sala) values(
 null, '123456789', true, 1
 );
 
+insert into processo_matar (id_requisicao, pid_processo, is_executado, fk_computador) values
+(null, 3956, false, 1),
+(null, 16696, false, 1)
+;
+
 select * from faculdade;
 select * from andar;
 select * from sala;
@@ -131,4 +146,29 @@ select * from usuario;
 select * from computador;
 select * from relatorio;
 select * from processo;
+select * from processo_matar;
 select * from chamados;
+
+insert into chamados (id_chamado, ra_aluno, hostname, descricao_ocorrido, status_chamado, fk_computador) values (
+null, 1545, '544454', 'dvhbvhjabvjsab', 'Pendente', 1
+);
+
+select count(uso_disco >= 90) ;
+
+select count(uso_disco) from relatorio where uso_disco >= 5;
+
+select count(uso_ram) from relatorio where uso_ram >= 84;
+
+select count(uso_disco) AS uso, count(uso_ram) from relatorio AS rela inner join relatorio on rela.uso = relatorio.uso_ram;
+select count(id_chamado) from chamados;
+
+SELECT computador.*, sala.identificador_sala, andar.identificador_andar, computador.problema_cpu, computador.problema_disco, computador.problema_memoria, computador.problema_fisico FROM faculdade
+    INNER JOIN andar ON faculdade.id_faculdade = andar.fk_faculdade
+    INNER JOIN sala ON andar.id_andar = sala.fk_andar
+    INNER JOIN computador ON sala.id_sala = computador.fk_sala
+    WHERE faculdade.id_faculdade = 1;
+
+
+
+
+
