@@ -139,6 +139,21 @@ insert into processo_matar (id_requisicao, pid_processo, is_executado, fk_comput
 (null, 16696, false, 1)
 ;
 
+CREATE TABLE notificar_aluno (
+id_notificacao INT PRIMARY KEY AUTO_INCREMENT,
+is_executado BOOLEAN,
+titulo VARCHAR(255),
+descricao VARCHAR(255),
+data_hora_executado DATETIME,
+fk_computador INT,
+FOREIGN KEY (fk_computador)
+REFERENCES computador (id_computador)
+);
+
+insert into notificar_aluno (id_notificacao, is_executado, fk_computador) values
+(null, false, 1)
+;
+
 select * from faculdade;
 select * from andar;
 select * from sala;
@@ -148,6 +163,7 @@ select * from relatorio;
 select * from processo;
 select * from processo_matar;
 select * from chamados;
+select * from notificar_aluno;
 
 insert into chamados (id_chamado, ra_aluno, hostname, descricao_ocorrido, status_chamado, fk_computador) values (
 null, 1545, '544454', 'dvhbvhjabvjsab', 'Pendente', 1
@@ -168,6 +184,7 @@ SELECT computador.*, sala.identificador_sala, andar.identificador_andar, computa
     INNER JOIN computador ON sala.id_sala = computador.fk_sala
     WHERE faculdade.id_faculdade = 1;
 
+select * from processo;
 
 
 
